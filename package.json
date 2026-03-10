@@ -1,0 +1,42 @@
+{
+  "name": "@fulviocanducci/numeric",
+  "version": "1.0.2",
+  "description": "Lightweight numeric utility library with locale parsing",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "browser": "dist/index.global.js",
+  "license": "MIT",
+  "author": "Fulvio Canducci",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "numeric",
+    "math",
+    "currency",
+    "decimal",
+    "locale",
+    "numbers"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "currency.js": "^2.0.4"
+  }
+}
