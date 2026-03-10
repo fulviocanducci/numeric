@@ -255,6 +255,16 @@ Numeric is written in **TypeScript** and includes full type support.
 
 ---
 
+# CDN
+
+```JavaScript
+<script
+ src="https://cdn.jsdelivr.net/npm/@fulviocanducci/numeric@1.0.4/dist/index.global.min.js">
+</script>
+```
+
+---
+
 # License
 
 MIT
