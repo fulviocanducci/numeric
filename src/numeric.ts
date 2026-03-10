@@ -100,5 +100,7 @@ export class Numeric {
   }
 }
 
-window.Numeric = Numeric;
-window.Locale = Locale;
+if (typeof window !== "undefined") {
+  window.Numeric = Numeric;
+  window.Locale = Locale;
+}
