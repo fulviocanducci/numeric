@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Numeric, Locale } from "../src/Numeric";
+import { Numeric, Locale } from "../src/numeric";
 
 describe("Numeric", () => {
   it("sum", () => {

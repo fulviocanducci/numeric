@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Numeric } from "../src/Numeric";
+import { Numeric } from "../src/numeric";
 
 describe("Numeric comparison", () => {
   it("gt", () => {
