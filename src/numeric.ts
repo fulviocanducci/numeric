@@ -99,3 +99,6 @@ export class Numeric {
     return Numeric.multiply(value, percentage / 100);
   }
 }
+
+window.Numeric = Numeric;
+window.Locale = Locale;

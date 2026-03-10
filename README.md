@@ -1,5 +1,10 @@
 # Numeric
 
+![npm](https://img.shields.io/npm/v/@fulviocanducci/numeric)
+![downloads](https://img.shields.io/npm/dm/@fulviocanducci/numeric)
+![license](https://img.shields.io/npm/l/@fulviocanducci/numeric)
+![bundle size](https://img.shields.io/bundlephobia/min/@fulviocanducci/numeric)
+
 Lightweight numeric utility library for **JavaScript and TypeScript**.
 
 Numeric provides **safe arithmetic operations**, **locale-aware number parsing**, and **useful numeric helpers** built on top of `currency.js`.
