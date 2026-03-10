@@ -4,6 +4,7 @@
 ![downloads](https://img.shields.io/npm/dm/@fulviocanducci/numeric)
 ![license](https://img.shields.io/npm/l/@fulviocanducci/numeric)
 ![bundle size](https://img.shields.io/bundlephobia/min/@fulviocanducci/numeric)
+[![Test](https://github.com/fulviocanducci/numeric/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/fulviocanducci/numeric/actions/workflows/npm-publish.yml)
 
 Lightweight numeric utility library for **JavaScript and TypeScript**.
 
