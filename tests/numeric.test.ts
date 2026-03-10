@@ -1,6 +1,90 @@
 import { describe, it, expect } from "vitest";
 import { Numeric, Locale } from "../src/numeric";
 
+describe("LocaleConfig", () => {
+  it("Locale Config PT_BR", () => {
+    const PT_BR = Locale.PT_BR;
+    expect(PT_BR.symbol).toBe("");
+    expect(PT_BR.decimal).toBe(",");
+    expect(PT_BR.separator).toBe(".");
+    expect(PT_BR.precision).toBe(2);
+  });
+  it("Locale Config EN_US", () => {
+    const EN_US = Locale.EN_US;
+    expect(EN_US.symbol).toBe("");
+    expect(EN_US.decimal).toBe(".");
+    expect(EN_US.separator).toBe(",");
+    expect(EN_US.precision).toBe(2);
+  });
+
+  it("Locale Config DE_DE", () => {
+    const DE_DE = Locale.DE_DE;
+    expect(DE_DE.symbol).toBe("");
+    expect(DE_DE.decimal).toBe(",");
+    expect(DE_DE.separator).toBe(".");
+    expect(DE_DE.precision).toBe(2);
+  });
+
+  it("Locale Config FR_FR", () => {
+    const FR_FR = Locale.FR_FR;
+    expect(FR_FR.symbol).toBe("");
+    expect(FR_FR.decimal).toBe(",");
+    expect(FR_FR.separator).toBe(" ");
+    expect(FR_FR.precision).toBe(2);
+  });
+
+  it("Locale Config ES_ES", () => {
+    const ES_ES = Locale.ES_ES;
+    expect(ES_ES.symbol).toBe("");
+    expect(ES_ES.decimal).toBe(",");
+    expect(ES_ES.separator).toBe(".");
+    expect(ES_ES.precision).toBe(2);
+  });
+
+  it("Locale Config IT_IT", () => {
+    const IT_IT = Locale.IT_IT;
+    expect(IT_IT.symbol).toBe("");
+    expect(IT_IT.decimal).toBe(",");
+    expect(IT_IT.separator).toBe(".");
+    expect(IT_IT.precision).toBe(2);
+  });
+
+  it("Locale Config GENERIC", () => {
+    const GENERIC = Locale.GENERIC;
+    expect(GENERIC.symbol).toBe("");
+    expect(GENERIC.decimal).toBe("");
+    expect(GENERIC.separator).toBe("");
+    expect(GENERIC.precision).toBe(2);
+  });
+});
+
+describe("Numeric Instance Format", () => {
+  it("format EN-US -> PT-BR (create)", () => {
+    const numeric = Numeric.create(1000.5);
+    expect(numeric.format(Locale.PT_BR)).toBe("1.000,50");
+  });
+  it("format EN-US -> GENERIC", () => {
+    const numeric = Numeric.create(1000.5);
+    expect(numeric.format(Locale.GENERIC)).toBe("100050");
+  });
+  it("format EN-US -> PT-BR", () => {
+    const numeric = new Numeric(1000.5);
+    expect(numeric.format(Locale.PT_BR)).toBe("1.000,50");
+  });
+  it("format EN-US -> EN-US", () => {
+    const numeric = new Numeric(1000.5);
+    expect(numeric.format(Locale.EN_US)).toBe("1,000.50");
+    numeric.set(1234567.89);
+    expect(numeric.format(Locale.EN_US)).toBe("1,234,567.89");
+  });
+  it("format EN-US -> FR_FR", () => {
+    const numeric = new Numeric(1000.5);
+    expect(numeric.format(Locale.FR_FR)).toBe("1 000,50");
+    numeric.set(1234567.89);
+    expect(numeric.format(Locale.FR_FR)).toBe("1 234 567,89");
+  });
+});
+
 describe("Numeric", () => {
   it("sum", () => {
     expect(Numeric.sum(10, 20, 30)).toBe(60);

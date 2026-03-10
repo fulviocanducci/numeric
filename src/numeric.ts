@@ -1,17 +1,81 @@
 import currency from "currency.js";
 
-export const Locale = {
-  PT_BR: { decimal: ",", separator: "." },
-  EN_US: { decimal: ".", separator: "," },
-  DE_DE: { decimal: ",", separator: "." },
-  FR_FR: { decimal: ",", separator: " " },
-  ES_ES: { decimal: ",", separator: "." },
-  IT_IT: { decimal: ",", separator: "." },
-} as const;
+export interface LocaleConfig {
+  symbol: string;
+  decimal: string;
+  separator: string;
+  precision: number;
+}
 
-export type LocaleConfig = (typeof Locale)[keyof typeof Locale];
+export const Locale = {
+  PT_BR: { symbol: "", decimal: ",", separator: ".", precision: 2 },
+  EN_US: { symbol: "", decimal: ".", separator: ",", precision: 2 },
+  DE_DE: { symbol: "", decimal: ",", separator: ".", precision: 2 },
+  FR_FR: { symbol: "", decimal: ",", separator: " ", precision: 2 },
+  ES_ES: { symbol: "", decimal: ",", separator: ".", precision: 2 },
+  IT_IT: { symbol: "", decimal: ",", separator: ".", precision: 2 },
+  GENERIC: { symbol: "", decimal: "", separator: "", precision: 2 },
+} satisfies Record<string, LocaleConfig>;
+
+export class LocaleBuilder {
+  private symbol: string = "";
+  private decimal: string = ".";
+  private separator: string = ",";
+  private precision: number = 2;
+  constructor() {}
+  public setLocale(locale: LocaleConfig) {
+    this.symbol = locale.symbol;
+    this.decimal = locale.decimal;
+    this.separator = locale.separator;
+    this.precision = locale.precision;
+    return this;
+  }
+  public setSymbol(symbol: string) {
+    this.symbol = symbol;
+    return this;
+  }
+  public setDecimal(decimal: string) {
+    this.decimal = decimal;
+    return this;
+  }
+  public setSeparator(separator: string) {
+    this.separator = separator;
+    return this;
+  }
+  public setPrecision(precision: number) {
+    this.precision = precision;
+    return this;
+  }
+  public build(): LocaleConfig {
+    return {
+      symbol: this.symbol,
+      decimal: this.decimal,
+      separator: this.separator,
+      precision: this.precision,
+    };
+  }
+}
 
 export class Numeric {
+  private value: number;
+
+  constructor(value: number, config: LocaleConfig = Locale.EN_US) {
+    this.value = currency(value, config).value;
+  }
+
+  set(value: number, config: LocaleConfig = Locale.EN_US) {
+    this.value = currency(value, config).value;
+    return this;
+  }
+
+  format(config: LocaleConfig = Locale.EN_US): string {
+    return currency(this.value, config).format(config);
+  }
+
+  static create(value: number, config: LocaleConfig = Locale.EN_US): Numeric {
+    return new Numeric(value, config);
+  }
+
   static sum(...values: number[]): number {
     return currency(values.reduce((a, b) => a + b, 0)).value;
   }
@@ -103,4 +167,5 @@ export class Numeric {
 if (typeof window !== "undefined") {
   window.Numeric = Numeric;
   window.Locale = Locale;
+  window.LocaleBuilder = LocaleBuilder;
 }
